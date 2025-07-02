@@ -12,7 +12,7 @@ const handleError = (err) => {
 };
 
 const createToken = async function (id) {
-  return jwt.sign({ id }, "secret", { expiresIn: maxAge });
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: maxAge });
 };
 
 module.exports.signup_get = (req, res) => {
@@ -89,7 +89,7 @@ module.exports.get_username = async (req, res) => {
   if (!token) return res.status(401).json({ error: "No token" });
 
   try {
-    const decoded = jwt.verify(token, "secret");
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(decoded.id).select("username");
     res.status(200).json({ username: user.username });
   } catch (err) {

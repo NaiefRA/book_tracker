@@ -10,7 +10,7 @@ const requireAuth = (req, res, next) => {
     return res.status(401).json({ message: "Unauthorized" });
   }
 
-  jwt.verify(token, "secret", (err, decodedToken) => {
+  jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
     if (err) {
       console.log("Error", err);
       return res.status(401).json({ message: "Invalid token" });
