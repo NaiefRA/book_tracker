@@ -6,9 +6,6 @@ const maxAge = 3 * 24 * 60 * 60;
 
 const handleError = (err) => {
   console.log(err.message, err.code);
-  if (err.code === 11000) {
-    return "User already exists";
-  }
 };
 
 const createToken = async function (id) {
@@ -48,7 +45,7 @@ module.exports.signup_post = async (req, res) => {
     res.status(201).json({ user: user._id });
   } catch (err) {
     const errorMessage = handleError(err);
-    res.status(400).json({ error: errorMessage });
+    res.status(400).json({ error: err.message });
   }
 };
 
@@ -61,13 +58,13 @@ module.exports.login_post = async (req, res) => {
     const user = await User.findOne({ username });
 
     if (!user) {
-      throw Error("incorrect user");
+      throw Error("Incorrect username");
     }
 
     const auth = await bcrypt.compare(password, user.password);
 
     if (!auth) {
-      throw Error("incorrect password");
+      throw Error("Incorrect password");
     }
 
     // creating cookie when auth is passed to login
@@ -85,7 +82,7 @@ module.exports.login_post = async (req, res) => {
     res.status(200).json({ user: user._id });
   } catch (err) {
     handleError(err);
-    res.status(400).json({ error: err });
+    res.status(400).json({ error: err.message });
   }
 };
 

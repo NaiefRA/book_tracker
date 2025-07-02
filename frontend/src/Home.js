@@ -26,12 +26,25 @@ const Dashboard = () => {
   }, [books, completedBooksNumber]);
 
   useEffect(() => {
+    const wordString = (str) =>
+      str
+        .toLowerCase()
+        .split(/[\s,]+/)
+        .filter(Boolean);
+
     const newFilteredBooks = books.filter((book) => {
       const matchesCompletion =
         !showCompleted || book.pagesRead === book.totalPages;
-      const matchesGenre = book.genre
-        .toLowerCase()
-        .includes(genreSearch.toLowerCase());
+
+      const bookGenres = wordString(book.genre || "");
+      const searchTerms = wordString(genreSearch);
+
+      const matchesGenre =
+        searchTerms.length === 0 ||
+        searchTerms.every((term) =>
+          bookGenres.some((genre) => genre.includes(term))
+        );
+
       return matchesCompletion && matchesGenre;
     });
 
@@ -203,6 +216,7 @@ const Dashboard = () => {
                       />
                     </td>
                     <td>
+                      <button className="edit-btn">Edit</button>
                       <button
                         onClick={() => handleDelete(book._id)}
                         className="delete-btn"
