@@ -42,6 +42,7 @@ module.exports.signup_post = async (req, res) => {
       maxAge: maxAge * 1000,
       sameSite: "None",
       secure: true,
+      path: "/",
     });
 
     res.status(201).json({ user: user._id });
@@ -78,6 +79,7 @@ module.exports.login_post = async (req, res) => {
       maxAge: maxAge * 1000,
       sameSite: "None",
       secure: true,
+      path: "/",
     });
 
     res.status(200).json({ user: user._id });
@@ -93,6 +95,7 @@ module.exports.logout_get = async (req, res) => {
     httpOnly: true,
     sameSite: "None",
     secure: true,
+    path: "/",
   });
   console.log("Logged out");
   res.status(200).json({ message: "Logged out" });

@@ -14,8 +14,13 @@ const app = express();
 app.use(cookieParser());
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
-    credentials: true,
+    origin: [
+      "https://book-tracker-naiefra.netlify.app",
+      "http://localhost:3000",
+    ], // Replace with your actual Netlify URL
+    credentials: true, // This is crucial for cookies
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
