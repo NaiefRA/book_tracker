@@ -1,4 +1,4 @@
-import { act, useState } from "react";
+import { useState } from "react";
 import Tabs from "./Tabbar";
 import Login from "./Login";
 import Signup from "./Signup";

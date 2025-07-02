@@ -60,6 +60,7 @@ const Dashboard = () => {
         setBookInputs(inputs);
       })
       .catch((err) => setError("Please log in first"));
+    // eslint-disable-next-line
   }, []);
 
   // delete book

@@ -16,6 +16,7 @@ const Navbar = () => {
       .then((res) => res.json())
       .then((data) => setUsername(data.username))
       .catch((err) => console.log(err));
+    // eslint-disable-next-line
   }, []);
 
   const handleLogout = () => {

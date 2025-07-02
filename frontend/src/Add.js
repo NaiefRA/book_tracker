@@ -34,6 +34,7 @@ const Add = () => {
         console.log(res);
       })
       .catch((err) => setError("Please log in first"));
+    // eslint-disable-next-line
   }, []);
 
   // new book
