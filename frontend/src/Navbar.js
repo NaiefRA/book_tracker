@@ -31,6 +31,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="nav-left">
         <h2 className="title">Book Tracker!</h2>
+
         <a href="/home" className="nav-link">
           Dashboard
         </a>
