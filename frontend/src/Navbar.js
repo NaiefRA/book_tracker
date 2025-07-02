@@ -24,7 +24,7 @@ const Navbar = () => {
       method: "GET",
       credentials: "include",
     })
-      .then(() => navigate("/loginsignup"))
+      .then(() => navigate("/"))
       .catch((err) => console.error("Logout failed", err));
   };
 
