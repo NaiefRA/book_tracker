@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import Navbar from "./Navbar";
+import EditBookPopup from "./EditBookPopup";
 
 const Dashboard = () => {
   const baseUrl = process.env.REACT_APP_URL;
 
   const [books, setBooks] = useState([]);
   const [error, setError] = useState("");
+  const [editingBook, setEditingBook] = useState(null);
 
   //editing
   const [bookInputs, setBookInputs] = useState({});
@@ -130,6 +132,15 @@ const Dashboard = () => {
           />
         </div>
       </div>
+      {editingBook && (
+        <EditBookPopup
+          book={editingBook}
+          onClose={() => setEditingBook(null)}
+          onSubmit={(updated) =>
+            setBooks(books.map((b) => (b._id === updated._id ? updated : b)))
+          }
+        />
+      )}
 
       {!error && books.length > 0 && (
         <div className="homepage-content">
@@ -216,7 +227,12 @@ const Dashboard = () => {
                       />
                     </td>
                     <td>
-                      <button className="edit-btn">Edit</button>
+                      <button
+                        className="edit-btn"
+                        onClick={() => setEditingBook(book)}
+                      >
+                        Edit
+                      </button>
                       <button
                         onClick={() => handleDelete(book._id)}
                         className="delete-btn"

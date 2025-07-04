@@ -74,7 +74,7 @@ code {
   border: 1px solid #aaa;
 }
 
-.book-table .delete-btn {
+.delete-btn {
   background-color: #ff4d4d;
   color: white;
   padding: 8px 12px;
@@ -84,7 +84,7 @@ code {
   margin: 0.25rem;
   font-weight: bold;
 }
-.book-table .edit-btn {
+.edit-btn {
   background-color: blue;
   font-weight: bold;
   color: white;
@@ -325,4 +325,37 @@ code {
   .stats {
     display: none;
   }
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.popup-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.popup-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
 }
